@@ -1,0 +1,69 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Doctor API",
+        "description": "API for managing doctors."
+    },
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/doctors": {
+            "get": {
+                "summary": "Get a list of all doctors",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Doctor"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new doctor",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "doctor",
+                        "description": "Doctor object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Doctor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Doctor created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/Doctor"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Doctor": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "specialty": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
